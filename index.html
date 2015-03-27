@@ -1,0 +1,155 @@
+<!-- 
+* * * * * * * * * * * * * * * * * * * * * *
+* Author: Jeff Weeks                      *
+* Created: Summer 2013                    *
+* Last Revised: 2015.3.26                 *
+* Sibley Music Library                    *
+* Website-to-Voyager Search Tool          *
+* * * * * * * * * * * * * * * * * * * * * *
+-->
+
+<!DOCTYPE html>
+ 
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>SML Search Bar</title>
+	
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+ 	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+	<!--
+	<link href="jquery-ui-1.10.3.custom/css/jquery-ui-1.10.3.custom.css" rel="stylesheet">
+	<script src="jquery-ui-1.10.3.custom/js/jquery-1.9.1.js"></script>
+	<script src="jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.js"></script>
+	-->
+	
+	<link rel="stylesheet" type="text/css" href="SMLsearch2_0_style.css" />
+	<script src="SMLsearch2_0_script.js"></script>
+	<base target="_blank">
+  
+	<!--[if gte IE 9]><style type="text/css">.gradient {filter: none;}</style><![endif]-->
+</head>
+
+<body>
+
+	<div id="tabs">
+		<ul>
+		<!-- Tabs and Labels -->
+			<li id="catalog"><a href="#tabs-1">Basic Search</a></li>
+			<li id="scores"><a href="#tabs-2">Scores</a></li>
+			<li id="audio"><a href="#tabs-3">Audio</a></li>
+			<li id="video"><a href="#tabs-4">Video</a></li>
+			<li id="journals"><a href="#tabs-5">Journal Titles</a></li>
+			<li id="summon"><a href="#tabs-6">Articles & Books</a></li>
+		</ul>
+		
+		<!-- Catalog Search Area --> 
+		<div class="tabs" id="tabs-1">
+			<!-- Text Entry Field: Catalog Search -->
+			<input class="searchBoxes" id="catalogSearchbox" type="text" name="query" placeholder="Search our catalog for Scores, CDs, Books, Journals, and More" autofocus="autofocus"><button id="catalogButton" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="button" onclick="initiateCatalogSearch()" ></span><span class="ui-icon ui-icon-search"></span></button><br>
+			<!-- Sibley Only Box -->
+			<!--<span class="link" class="SMLCheck"><label><i>Sibley only:</i></label><input type="checkbox" ID="SMLCheck"><br><br>-->
+			<span class="link" class="SMLCheck">All U of R Libraries<input type="radio" name="SMLCheck">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sibley Music Library only<input type="radio" name="SMLCheck" id="SMLCheck" checked="checked"></span><br><br>
+			<!-- Link to Voyager Advanced Search -->
+			&nbsp;<span class="link">Search type:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://catalog.lib.rochester.edu/vwebv/searchAdvanced?sk=sibley" >Advanced Search</a><br>
+			<!-- Search Type Selector-->
+			<select id="searchType" style="font-size:12px">
+				<option value ="keywords">Keyword(s)</option>
+				<option value ="title">Title (omit initial a, an, the...)</option>
+				<option value ="boolean">Boolean (and/or/not)</option>
+				<option value ="callNumber">Call Number</option>
+				<option value ="authorComposerPerformerName">Author/Composer/Performer (last name first) **</option>
+				<option value ="authorComposerPerformerTitle">Author/Composer--Sorted by Title **</option>
+				<option value ="subject">Subject Heading (incl. books ABOUT composers/performers) **</option>
+				<option disabled></option>
+				<option disabled><span id="note">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** Disregards library location limits.</span></option>
+			</select>
+		  	<br><br>
+		  	<!-- "You might also try" links (table) -->
+			<table class="link"><tr><th>You might also try:</th></tr><tr><td class="noBottom"><a href="https://urresearch.rochester.edu/viewInstitutionalCollection.action?collectionId=25" >Sibley Digitized Materials</a></td><td class="noBottom"><a href="https://illiad.lib.rochester.edu/sib/" >Interlibrary Loan</a></td></tr></table>
+		</div>
+		
+		<!-- Scores Search Area -->
+		<div class="tabs" id="tabs-2">
+			<!-- Text Entry Field: Scores Search -->
+			<input class="searchBoxes" id="scoresSearchbox" type="text" name="query" placeholder="Search our catalog for Scores"><button id="scoresButton" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="button" onclick="initiateScoresSearch()"><span class="ui-icon ui-icon-search"></span></button><br>
+			<!-- Sibley Only Box -->
+			<!--<span class="link" class="SMLCheck"><label><i>Sibley only:</i></label><input type="checkbox" ID="scoresSMLCheck"><br><br>-->
+			<span class="link" class="SMLCheck">All U of R Libraries<input type="radio" name="scoresSMLCheck">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sibley Music Library only<input type="radio" name="scoresSMLCheck" id="scoresSMLCheck" checked="checked"></span><br><br>
+			<!-- Link to Voyager Advanced Search -->
+			&nbsp;<span class="link">Search type:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://catalog.lib.rochester.edu/vwebv/searchAdvanced?sk=sibley" >Advanced Search</a><br>
+			<!-- Search Type Selector-->
+			<select id="scoresSearchType" style="font-size:12px">
+		    	<option value ="keywords">Keyword(s)</option>
+		    	<option value ="title">Title (omit initial a, an, the...)</option>
+				<option value ="boolean">Boolean (and/or/not)</option>
+			</select>
+			<br><br>
+		  	<!-- "You might also try" links (table) -->
+			<table class="link"><tr><th colspan="3">You might also try:</th></tr><tr><td><a href="https://urresearch.rochester.edu/viewInstitutionalCollection.action?collectionId=25" >Sibley Digitized Materials</a></td><td><a class="link" href="http://imslp.org/" >International Music Score Library Project (IMSLP)</a></td></tr><tr><td class="noBottom"><a href="https://illiad.lib.rochester.edu/sib/" >Interlibrary Loan</a></td></tr></table>
+		</div>
+		
+		<!-- Audio Search Area -->		
+		<div class="tabs" id="tabs-3">
+			<!-- Text Entry Field: Audio Search -->
+			<input class="searchBoxes" id="audioSearchbox" type="text" name="query" placeholder="Search our catalog for Sound Recordings (CDs, LPs, etc.)"><button id="audioButton" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="button" onclick="initiateAudioSearch()"><span class="ui-icon ui-icon-search"></span></button><br>
+			<!-- Sibley Only Box -->
+			<!--<span class="link" class="SMLCheck"><label><i>Sibley only:</i></label><input type="checkbox" ID="audioSMLCheck"><br><br>-->
+			<span class="link" class="SMLCheck">All U of R Libraries<input type="radio" name="audioSMLCheck">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sibley Music Library only<input type="radio" name="audioSMLCheck" id="audioSMLCheck" checked="checked"></span><br><br>
+			<!-- Link to Voyager Advanced Search -->
+			&nbsp;<span class="link">Search type:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://catalog.lib.rochester.edu/vwebv/searchAdvanced?sk=sibley" >Advanced Search</a><br>
+			<!-- Search Type Selector-->
+			<select id="audioSearchType" style="font-size:12px">
+		    	<option value ="keywords">Keyword(s)</option>
+		    	<option value ="titlekeyword">Title Keyword(s)</option>
+				<option value ="boolean">Boolean (and/or/not)</option>
+			</select>
+			<!-- Checkboxes for CDs only or Exclude ESM Recordings -->
+			<span class="link" id="cdCheck"><label>CDs only:</label><input type="checkbox" id="cdOnly"><label style="padding-left:2em">Exclude ESM Recordings:</label><input type="checkbox" id="noEsm"></span>
+			<br><br>
+			<!-- "You might also try" links (table) -->
+			<table class="link"><tr><th colspan="2">You might also try:</th></tr><tr><td><a href="http://www.lib.rochester.edu/index.cfm?page=3059&dbredirect=http://eastman.naxosmusiclibrary.com/" >Naxos Music Library</a></td><td><a href="http://www.lib.rochester.edu/index.cfm?page=3059&dbredirect=http://eastman.naxosmusiclibrary.com/Jazz" >Naxos Jazz Library</a></td></tr><tr><td  class="noBottom"><a href="http://www.dramonline.org/" >Digital Repository of American Music (DRAM)</a></td><td  class="noBottom"><a href="https://illiad.lib.rochester.edu/sib/" >Interlibrary Loan</a></td></tr></table>
+		</div>
+		
+		<!-- Video Search Area -->
+		<div class="tabs" id="tabs-4">
+			<!-- Text Entry Field: Video Search -->
+			<input class="searchBoxes" id="videoSearchbox" type="text" name="query" placeholder="Search our catalog for Video Recordings (DVDs, VHS, etc.)"><button id="videoButton" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="button" onclick="initiateVideoSearch()"><span class="ui-icon ui-icon-search"></span></button><br>
+			<!-- Sibley Only Box -->
+			<!--<span class="link" class="SMLCheck"><label><i>Sibley only:</i></label><input type="checkbox" ID="videoSMLCheck"><br><br>-->
+			<span class="link" class="SMLCheck">All U of R Libraries<input type="radio" name="videoSMLCheck">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sibley Music Library only<input type="radio" name="videoSMLCheck" id="videoSMLCheck" checked="checked"></span><br><br>			
+			<!-- Link to Voyager Advanced Search -->
+			&nbsp;<span class="link">Search type:</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="link" href="http://catalog.lib.rochester.edu/vwebv/searchAdvanced?sk=sibley" >Advanced Search</a><br>
+			<!-- Search Type Selector-->
+			<select id="videoSearchType" style="font-size:12px">
+				<option value ="keywords">Keyword(s)</option>
+				<option value ="titlekeyword">Title Keyword(s)</option>
+				<option value ="boolean">Boolean (and/or/not)</option>
+			</select>
+			<br><br>
+			<!-- "You might also try" links (table) -->
+			<table class="link"><tr><th colspan="2">You might also try:</th></tr><tr><td class="noBottom"><a href="http://www.youtube.com/" >YouTube</a></td><td  class="noBottom"><a href="https://illiad.lib.rochester.edu/sib/" >Interlibrary Loan</a></td></tr></table>
+		</div>
+		
+		<!-- Journals Search Area -->
+		<div class="tabs" id="tabs-5">
+			<!-- Text Entry Field: Journals Search -->
+			<input class="searchBoxes" id="journalsSearchbox" type="text" name="query" placeholder="Search our catalog for Journals by Title"><button id="journalsButton" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="button" onclick="initiateJournalsSearch()"><span class="ui-icon ui-icon-search"></span></button><br>			
+			<!-- Link to Voyager Advanced Search -->
+			<a class="link" href="http://catalog.lib.rochester.edu/vwebv/searchAdvanced?sk=sibley" >Advanced Search</a><br>
+		</div>
+		
+		<!-- Articles & Books Search Area -->
+		<div class="tabs" id="tabs-6">
+			<!--**Text Entry Field: New Grove Search**-->
+			<input class="searchBoxes" id="summonSearchbox" type="text" name="query" placeholder="Search all available U of R library resources for Articles & Books" autofocus="autofocus"><button id="summonButton" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" type="button" onclick="initiateSummonSearch()"><span class="ui-icon ui-icon-search"></span></button><br>
+			<!--**Link to RCL Advanced  Federated Search**-->
+			<a class="link" href="http://rochester.summon.serialssolutions.com/advanced">Advanced Search</a><br><br>
+			<span class="link" id="summonCheck"><label>Books only:</label><input type="checkbox" id="booksOnly"><label style="padding-left:2em">Articles only:</label><input type="checkbox" id="articlesOnly"><label style="padding-left:2em">Items with full text online:</label><input type="checkbox" id="fullTextOnly"></span><br><br>
+			<span class="link">Initial results may be refined further.</span>
+		</div> 
+	</div>
+</body>
+</html>
