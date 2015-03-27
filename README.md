@@ -1,0 +1,2 @@
+# SMLsearch
+A Voyager (integrated library system) search portal designed specifically for musicians and music researchers.  Just a simple UI interface I designed for the patrons at Sibley Music Library at the Eastman School of Music.  Sibley shares an integrated library system with the rest of the University of Rochester libraries and this search portal gives our patrons a custom UI catered to their needs.
