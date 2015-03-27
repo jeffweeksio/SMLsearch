@@ -1,0 +1,85 @@
+/* 
+* * * * * * * * * * * * * * * * * * * * * *
+* Author: Jeff Weeks                      *
+* Created: Summer 2013                    *
+* Last Revised: 2015.3.26                 *
+* Sibley Music Library                    *
+* Website-to-Voyager Search Tool          *
+* * * * * * * * * * * * * * * * * * * * * *
+*/
+
+body {
+margin: 0;
+padding: 0;
+font-size: 14px
+}
+
+option {
+font-size: 12px
+}
+a {
+text-decoration: none;
+font-weight: bold;
+}
+
+a:hover {
+text-decoration: underline;
+}
+
+button {
+height: 30px;
+border-radius: 5px;
+margin-left:.5em;
+margin-top:-5px;
+padding-left:.5em;
+padding-right:.5em
+}
+
+th {
+text-align: left
+}
+
+td  {
+padding-right: 4em; 
+padding-bottom: 1em
+}
+
+#tabs {
+width: 700px; 
+margin-left: auto; 
+margin-right: auto; 
+top: 0em
+} 
+
+.searchBoxes {
+width: 500px; 
+border-radius: 5px; 
+padding: 5px;
+}
+
+.link {
+font-size: 12px
+}
+
+#note {
+font-size: 10px; 
+font-style: italic
+}
+
+#cdCheck {
+padding-left: 5em
+}
+
+.SMLCheck {
+font-size: 10px
+}
+
+.ui-tabs .ui-tabs-nav li a {
+float: left; 
+padding: .5em;
+text-decoration: none;
+}
+
+.noBottom {
+padding-bottom: 0px;
+}
